@@ -14,20 +14,25 @@ import kotlinx.serialization.json.Json
 
 interface ApiService {
 
-    suspend fun get(url: String): HttpResponse {
+    suspend fun get(url: String, headers: Map<String, String>?): HttpResponse {
         val response = KtorClient.httpClient.get(url) {
             headers {
                 append("Accept", "application/json")
                 //append("x-custom-header","value")
+                if (!headers.isNullOrEmpty()) {
+                    for ((key, value) in headers) {
+                        append(key, value)
+                    }
+                }
             }
             contentType(ContentType.Application.Json)
         }
         return response
     }
 
-    suspend fun post(urlString: String, body: Map<String, String>?): HttpResponse {
+    suspend fun post(urlString: String, body: Map<String, String>?, headers: Map<String, String>?): HttpResponse {
         val response = KtorClient.httpClient.post {
-            url{
+            url {
                 urlString
             }
             if (body != null) {
@@ -36,13 +41,18 @@ interface ApiService {
             headers {
                 append("Accept", "application/json")
                 //append("x-custom-header","value")
+                if (!headers.isNullOrEmpty()) {
+                    for ((key, value) in headers) {
+                        append(key, value)
+                    }
+                }
             }
             contentType(ContentType.Application.Json)
         }
         return response;
     }
 
-    suspend fun put(urlString: String, body: Map<String, String>?): HttpResponse {
+    suspend fun put(urlString: String, body: Map<String, String>?, headers: Map<String, String>?): HttpResponse {
         val response = KtorClient.httpClient.put {
             url {
                 urlString
@@ -53,24 +63,33 @@ interface ApiService {
             headers {
                 append("Accept", "application/json")
                 //append("x-custom-header","value")
+                if (!headers.isNullOrEmpty()) {
+                    for ((key, value) in headers) {
+                        append(key, value)
+                    }
+                }
             }
             contentType(ContentType.Application.Json)
         }
         return response;
     }
 
-    suspend fun delete(urlString: String, body: Map<String, String>?): HttpResponse {
+    suspend fun delete(urlString: String, body: Map<String, String>?, headers: Map<String, String>?): HttpResponse {
         val response = KtorClient.httpClient.delete {
             url {
                 urlString
             }
-
             if (body != null) {
                 setBody(Json.encodeToString(body))
             }
             headers {
                 append("Accept", "application/json")
                 //append("x-custom-header","value")
+                if (!headers.isNullOrEmpty()) {
+                    for ((key, value) in headers) {
+                        append(key, value)
+                    }
+                }
             }
             contentType(ContentType.Application.Json)
         }

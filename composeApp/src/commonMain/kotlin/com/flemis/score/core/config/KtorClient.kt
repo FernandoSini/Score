@@ -8,6 +8,7 @@ import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.UserAgent
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.observer.ResponseObserver
+import io.ktor.client.plugins.websocket.WebSockets
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.http.headers
@@ -34,6 +35,7 @@ object KtorClient {
         /*install(Logging) {
             level = LogLevel.ALL
         }*/
+        install(WebSockets)
 
         install(UserAgent) {
             agent = AppUserAgent().getUserAgent()

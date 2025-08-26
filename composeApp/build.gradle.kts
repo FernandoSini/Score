@@ -60,6 +60,9 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
+            binaryOption("bundleId", "br.com.flemis.score.iphone.ComposeApp")
+            binaryOption("bundleVersion", "1")
+            binaryOption("bundleShortVersionString", "1.0.0")
             baseName = "ComposeApp"
             isStatic = true
             linkerOpts.add("-lsqlite3")
@@ -85,8 +88,9 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
             implementation(compose.material3AdaptiveNavigationSuite)
-            implementation(compose.ui)
+            implementation(compose.uiUtil)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
@@ -109,6 +113,11 @@ kotlin {
             implementation(libs.coil3.coil.compose)
             implementation(libs.coil3.coil.network.ktor3)
             implementation(libs.sqlite.bundled)
+            implementation(libs.napier)
+            implementation(libs.jetbrains.material.navigation)
+            implementation(libs.androidx.material)
+            implementation(libs.haze)
+            implementation(libs.graphics.shapes)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
@@ -136,6 +145,9 @@ android {
             }
         }
     }
+    lint {
+        disable.add("NullSafeMutableLiveData")
+    }
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -160,8 +172,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        buildConfig = true
+        // compose = true
+    }
+    androidResources {
+        generateLocaleConfig = true
     }
 }
 
@@ -172,6 +191,16 @@ dependencies {
 // Koin for JUnit 5
     testImplementation(libs.koin.test.junit5)
     debugImplementation(compose.uiTooling)
+    debugImplementation(libs.androidx.test.manifest)
+    debugImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.uiautomator)
+    androidTestImplementation(libs.androidx.espresso.intents)
+    androidTestImplementation(libs.androidx.espresso.intents)
+    androidTestImplementation(libs.androidx.rules)
+    androidTestImplementation(libs.androidx.core)
+
+    testImplementation(libs.robolectric)
     listOf(
         "kspAndroid", "kspIosSimulatorArm64", "kspIosX64", "kspIosArm64",// "kspJvm",
     ).forEach {

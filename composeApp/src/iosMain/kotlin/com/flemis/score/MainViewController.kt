@@ -4,6 +4,8 @@ import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeUIViewController
 import com.flemis.score.core.di.initKoin
+import io.github.aakira.napier.DebugAntilog
+import io.github.aakira.napier.Napier
 
 @OptIn(ExperimentalComposeApi::class, ExperimentalComposeUiApi::class)
 fun MainViewController() = ComposeUIViewController(
@@ -14,6 +16,6 @@ fun MainViewController() = ComposeUIViewController(
     }
 
 ) {
-   // Napier.base(DebugAntilog(coroutinesSuffix = false, defaultTag = "Score"))
+    Napier.base(DebugAntilog(coroutinesSuffix = false, defaultTag = "Score"))
     App()
 }

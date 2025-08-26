@@ -10,6 +10,3 @@ data class UserModel(
 )
 fun UserModel.toEntity() = UserEntity(this.id)
 
-abstract class BaseDataSource<E,T>(private val entityManager:(E)->T){
-
-}

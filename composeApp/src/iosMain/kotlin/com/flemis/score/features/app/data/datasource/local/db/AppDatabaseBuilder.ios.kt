@@ -24,7 +24,7 @@ private fun documentDirectory(): String {
 actual class AppDatabaseBuilder {
     constructor()
     actual fun getRoomDatabase(): AppDatabase {
-        val dbFilePath = documentDirectory() + "/bookish_adventure.db"
+        val dbFilePath = documentDirectory() + "/score.db"
         return Room.databaseBuilder<AppDatabase>(
             name = dbFilePath,
             //     factory =  { AppDatabase::class.instantiateImpl() }
@@ -36,7 +36,7 @@ actual class AppDatabaseBuilder {
     @OptIn(ExperimentalForeignApi::class)
     actual fun deleteDatabase(): Boolean {
         val appContext = documentDirectory()
-        val dbFilePath = "$appContext/bookish_adventure.db"
+        val dbFilePath = "$appContext/score.db"
         val fileManager = NSFileManager.defaultManager
         return fileManager.removeItemAtPath(dbFilePath, error = null)
     }

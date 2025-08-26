@@ -8,12 +8,15 @@ import androidx.room.TypeConverters
 import com.flemis.score.core.utils.ConvertersRoom
 import com.flemis.score.features.app.data.datasource.local.db.dao.UserDao
 import com.flemis.score.features.app.data.models.UserModel
+import com.flemis.score.features.base.data.datasource.local.db.SportsMenuDao
+import com.flemis.score.features.base.data.models.SportsMenuModel
 
-@Database(entities = [UserModel::class], version = 1)
+@Database(entities = [UserModel::class, SportsMenuModel::class], version = 1)
 @TypeConverters(ConvertersRoom::class)
 @ConstructedBy(AppDatabaseConstructor::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getUserDao(): UserDao
+    abstract fun getSportsMenuDao(): SportsMenuDao
     //abstract fun getTheme(): ThemeRepository
     // abstract fun deleteDatabase(): Boolean
 
