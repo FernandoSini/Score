@@ -19,6 +19,7 @@ captures
 /composeApp/src/commonMain/kotlin/com/flemis/score/rascunhos
 # Compiled class file
 *.class
+/rascunhos/
 
 # Log file
 *.log
