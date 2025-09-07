@@ -137,7 +137,9 @@ kotlin {
 android {
     namespace = "com.flemis.score"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+    sourceSets["main"].res.srcDirs("src/androidMain/res")
     testOptions {
         unitTests {
             all {
@@ -174,11 +176,13 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+
     }
     buildFeatures {
         buildConfig = true
         // compose = true
     }
+
     androidResources {
         generateLocaleConfig = true
     }

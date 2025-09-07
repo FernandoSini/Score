@@ -4,6 +4,7 @@ object Routes {
 
     const val BASE_ROUTE = "base"
     const val SPLASH_ROUTE = "/"
+    const val HOME = "home"
     const val LOGIN = "login"
     const val SETTINGS = "settings"
     const val CODE_VERIFICATION= "code_verification"

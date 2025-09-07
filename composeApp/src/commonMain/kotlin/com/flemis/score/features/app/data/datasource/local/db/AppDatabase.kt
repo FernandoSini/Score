@@ -8,8 +8,8 @@ import androidx.room.TypeConverters
 import com.flemis.score.core.utils.ConvertersRoom
 import com.flemis.score.features.app.data.datasource.local.db.dao.UserDao
 import com.flemis.score.features.app.data.models.UserModel
-import com.flemis.score.features.base.data.datasource.local.db.SportsMenuDao
-import com.flemis.score.features.base.data.models.SportsMenuModel
+import com.flemis.score.features.home.data.datasource.local.db.SportsMenuDao
+import com.flemis.score.features.home.data.models.SportsMenuModel
 
 @Database(entities = [UserModel::class, SportsMenuModel::class], version = 1)
 @TypeConverters(ConvertersRoom::class)

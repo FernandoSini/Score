@@ -4,16 +4,22 @@ import android.content.Context
 import com.flemis.score.core.utils.MultiPlatformPreferences
 import com.flemis.score.core.utils.UserAgent
 import com.flemis.score.features.app.data.datasource.local.db.AppDatabaseBuilder
+import com.flemis.score.features.app.data.datasource.remote.BillingDataSource
+import com.flemis.score.features.app.data.datasource.remote.BillingDataSourceImpl
+import com.flemis.score.features.app.data.datasource.remote.InAppPurchase
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.KoinAppDeclaration
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 
 actual val platformModule: Module = module {
     single<AppDatabaseBuilder> { AppDatabaseBuilder(get()) }
-    single<UserAgent>{UserAgent()}
-    single<MultiPlatformPreferences>{MultiPlatformPreferences(get())}
+    single<UserAgent> { UserAgent() }
+    single<MultiPlatformPreferences> { MultiPlatformPreferences(get()) }
+    single<InAppPurchase>{InAppPurchase(get()) }
 
 }
 

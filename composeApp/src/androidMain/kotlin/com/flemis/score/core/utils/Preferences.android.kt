@@ -3,6 +3,7 @@ package com.flemis.score.core.utils
 import android.content.Context
 import android.content.SharedPreferences
 import io.github.aakira.napier.Napier
+import androidx.core.content.edit
 
 
 actual class MultiPlatformPreferences(private val context: Context) {
@@ -12,7 +13,7 @@ actual class MultiPlatformPreferences(private val context: Context) {
     }
 
     actual fun putString(key: String, value: String) {
-        preferences.edit().putString(key, value).apply()
+        preferences.edit { putString(key, value) }
     }
 
     actual fun getString(key: String, defaultValue: String?): String? {

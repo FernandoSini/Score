@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">score</string>
+    <string name="home">Home</string>
+    <string name="teams">Teams</string>
+</resources>
